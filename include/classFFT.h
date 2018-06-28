@@ -3,6 +3,8 @@
 
 #include <complex>
 #include <valarray>
+#include <SFML/Audio.hpp>
+
 
 typedef std::complex<double> Complex;
 typedef std::valarray<Complex> CArray;
@@ -15,11 +17,15 @@ private:
 	CArray data;
 
 public:
-	classFFT(CArray &_data);
+	classFFT(const sf::Int16 *myarray, const int size);
 	~classFFT();
 
 	bool initFFT(CArray &x);
 	void printData();
-	inline CArray getData() { return data; }
+
+	//GETTERS
+	double getFundFreq();
+	inline CArray getData() const { return data; } 
+
 };
 #endif

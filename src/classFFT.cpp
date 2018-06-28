@@ -1,12 +1,20 @@
 #include <iostream>
+#include <math.h>
 #include "classFFT.h"
 
 using namespace std;
 
 
-classFFT::classFFT(CArray &_data)
-	:data(_data)
+classFFT::classFFT(const sf::Int16 *myarray, const int size)
 {
+	Complex *temp = new Complex[size];
+	for (size_t i = 0; i < size; ++i)
+		temp[i] = myarray[i];
+
+	CArray _data(temp, size);
+	delete[] temp;
+	data = _data;
+
 	initFFT(data);
 }
 
@@ -51,4 +59,33 @@ void classFFT::printData()
 {
 	for (size_t i = 0; i < data.size(); ++i) 
 		cout << "Fourier " << i << " " << data[i] << endl;
+}
+
+
+// ////////////////////////////////////////////// //
+// OBTENIR LA VALEUR DE LA FREQUENCE FONDAMENTALE //
+// ////////////////////////////////////////////// //
+double classFFT::getFundFreq()
+{
+	int fund    = 0;
+	int offset  = 0;
+	double max = 0.0;
+	int cpt     = 0;
+	double temp = 0.0;
+
+	for (auto it = begin(data); it != end(data); ++it)
+	{
+		temp = norm(*it);
+		++cpt;
+
+		if (temp > max)
+		{
+			max = temp;
+			offset = cpt;
+		}
+	}
+	
+	cout << "Maximum : " << max << " Offset : " << offset << endl;
+	fund = int(offset)/2;
+	return fund;
 }
