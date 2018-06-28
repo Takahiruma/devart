@@ -65,7 +65,7 @@ void classFFT::printData()
 // ////////////////////////////////////////////// //
 // OBTENIR LA VALEUR DE LA FREQUENCE FONDAMENTALE //
 // ////////////////////////////////////////////// //
-double classFFT::getFundFreq()
+int classFFT::getFundFreq()
 {
 	int fund    = 0;
 	int offset  = 0;
