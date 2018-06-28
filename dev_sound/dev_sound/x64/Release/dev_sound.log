@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Le répertoire Output ne se termine pas par une barre oblique finale. Cette instance de build ajoutera une barre oblique, comme requis, pour permettre l'évaluation correcte du répertoire Output.
+  main.cpp
+  Génération de code en cours
+  19 of 106 functions (17.9%) were compiled, the rest were copied from previous compilation.
+    18 functions were new in current compilation
+    20 functions had inline decision re-evaluated but remain unchanged
+  Fin de la génération du code
+  dev_sound.vcxproj -> C:\Users\taka\Desktop\dev'art\devart\dev_sound\dev_sound\..\..\dev_sound.exe
