@@ -6,6 +6,7 @@ AudioInput in;
 FFT fftLin;
 GestionOnde GOnde;
 PImage sprite;
+boolean affiche = false;
 
 void setup()
 {
@@ -65,10 +66,14 @@ void draw()
     GOnde.setEmitter(x,y,freq);
   }
   GOnde.display();
-  fill(255);
-  textSize( 32 );
-  text((int)(freq) + " Hz", width/2.5, height/2);
-  text("val = " + nf(max, 0, 2), width/2.5, height/2+30);
+  
+  
+  if(affiche){
+    fill(255);
+    textSize( 32 );
+    text((int)(freq) + " Hz", width/2.5, height/2);
+    text("val = " + nf(max, 0, 2), width/2.5, height/2+30);
+  }
   
   //DIVISION DU TERRAIN
   PVector middle = new PVector(width/2, height/2);
@@ -95,4 +100,10 @@ void draw()
 
 void keyPressed()
 {
+   if (key == 'a' || key == 'A') {
+      if(affiche)
+        affiche = false;
+      else
+        affiche = true;
+   }
 }
