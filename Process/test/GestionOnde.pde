@@ -33,6 +33,10 @@ class GestionOnde {
             (middle.y < ondes.get(j).position.y && ondes.get(j).position.y < middle.y + ondes.get(j).radius)
             ){
               ondes.get(i).checkCollisionOnde(ondes.get(j));
+              //color c = ondes.get(i).spriteColor + ondes.get(j).spriteColor;
+              
+              //PShape e = ellipse(ondes.get(i).position.x , ondes.get(i).position.y , ondes.get(i).radius + 5, ondes.get(i).radius + 5);
+              //setTint(color(hue(c),saturation(c),brightness(c),0.5));
             }
           }
         }

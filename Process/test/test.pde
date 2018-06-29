@@ -56,8 +56,9 @@ void draw()
   //AFFICHER
   //stroke(255, 255, 0);
   //line(freq_max, 380, freq_max, 380 - max*30);
-  int x = int(random(0,width));
-  int y = int(random(0,height));
+  int x = int(random(width/2.1,width/1.9));
+  int y = int(random(height/2.1,height/1.9));
+ // x = width/2; y = height/2;
   //ellipse(x,y,20,20);
   float freq = (0.5*freq_max/(float)fftLin.specSize())*in.sampleRate();
   if(max>1.0f)
