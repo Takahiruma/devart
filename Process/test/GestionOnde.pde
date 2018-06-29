@@ -18,6 +18,26 @@ class GestionOnde {
     for (onde p : ondes) {
       p.update();
     }
+    //DIVISION DU TERRAIN
+    PVector middle = new PVector(width/2, height/2);
+    
+    //PARCOURS DES ONDES POUR TEST COLLISION
+    for(int i = 0; i < ondes.size(); ++i)
+    {
+      if(!ondes.get(i).isDead() && ondes.get(i).isInScreen()) {
+        for(int j = i+1; j < ondes.size();j++){
+          if(!ondes.get(j).isDead() && ondes.get(j).isInScreen()) {
+            if((ondes.get(i).position.y > middle.y && ondes.get(j).position.y > middle.y) ||
+            (ondes.get(i).position.y < middle.y && ondes.get(j).position.y < middle.y) ||
+            (middle.y < ondes.get(i).position.y && ondes.get(i).position.y < middle.y + ondes.get(i).radius) ||
+            (middle.y < ondes.get(j).position.y && ondes.get(j).position.y < middle.y + ondes.get(j).radius)
+            ){
+              ondes.get(i).checkCollisionOnde(ondes.get(j));
+            }
+          }
+        }
+      }      
+    }
   }
 
   void setEmitter(float x, float y, float freq) {

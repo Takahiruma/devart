@@ -53,7 +53,6 @@ void draw()
 
   //PARCOURIR TABLAL GESTION DES ONDES
   //AFFICHER
-  GOnde.update();
   //stroke(255, 255, 0);
   //line(freq_max, 380, freq_max, 380 - max*30);
   int x = int(random(0,width));
@@ -64,32 +63,12 @@ void draw()
   {
     GOnde.setEmitter(x,y,freq);
   }
+  GOnde.update();
   GOnde.display();
   fill(255);
   textSize( 32 );
-  text((int)(freq) + " Hz", width/2.5, height/2);
-  text("val = " + nf(max, 0, 2), width/2.5, height/2+30);
-  
-  //DIVISION DU TERRAIN
-  PVector middle = new PVector(width/2, height/2);
-  
-  //PARCOURS DES ONDES POUR TEST COLLISION
-  for(int i = 0; i < GOnde.ondes.size(); ++i)
-  {
-    if(!GOnde.ondes.get(i).isDead() && GOnde.ondes.get(i).isInScreen()) {
-      for(int j = i+1; j < GOnde.ondes.size();j++){
-        if(!GOnde.ondes.get(j).isDead() && GOnde.ondes.get(j).isInScreen()) {
-          if((GOnde.ondes.get(i).position.y > middle.y && GOnde.ondes.get(j).position.y > middle.y) ||
-          (GOnde.ondes.get(i).position.y < middle.y && GOnde.ondes.get(j).position.y < middle.y) ||
-          (middle.y < GOnde.ondes.get(i).position.y && GOnde.ondes.get(i).position.y < middle.y + GOnde.ondes.get(i).radius) ||
-          (middle.y < GOnde.ondes.get(j).position.y && GOnde.ondes.get(j).position.y < middle.y + GOnde.ondes.get(j).radius)
-          ){
-            GOnde.ondes.get(i).checkCollisionOnde(GOnde.ondes.get(j));
-          }
-        }
-      }
-    }      
-  }
+  text((int)(freq) + " Hz", 0, 30);
+  text("val = " + nf(max, 0, 2), 0, 60);
 }
 
 
