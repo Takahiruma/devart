@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <cmath>
 #include "classFFT.h"
 
 using namespace std;
@@ -9,7 +10,9 @@ classFFT::classFFT(const sf::Int16 *myarray, const int size)
 {
 	Complex *temp = new Complex[size];
 	for (size_t i = 0; i < size; ++i)
+	{
 		temp[i] = myarray[i];
+	}
 
 	CArray _data(temp, size);
 	delete[] temp;
@@ -70,22 +73,21 @@ int classFFT::getFundFreq()
 	int fund    = 0;
 	int offset  = 0;
 	double max = 0.0;
-	int cpt     = 0;
 	double temp = 0.0;
 
-	for (auto it = begin(data); it != end(data); ++it)
+	for (int i = 0; i < data.size(); ++i)
 	{
-		temp = norm(*it);
-		++cpt;
-
+		temp = norm(data[i]);
+		//temp = data[i].real()*data[i].real() + data[i].imag()*data[i].imag();
+		//double temp2 = std::sqrt(2,temp);
 		if (temp > max)
 		{
 			max = temp;
-			offset = cpt;
+			offset = i;
 		}
 	}
 	
-	cout << "Maximum : " << max << " Offset : " << offset << endl;
-	fund = int(offset)/2;
+	cout << "Maximum : " << max << " Offset : " << offset << " mon bzi : " << data[offset].real() << endl;
+	fund = offset/2;
 	return fund;
 }
