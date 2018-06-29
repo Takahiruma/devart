@@ -6,6 +6,7 @@ AudioInput in;
 FFT fftLin;
 GestionOnde GOnde;
 PImage sprite;
+boolean affiche = false;
 
 void setup()
 {
@@ -65,13 +66,22 @@ void draw()
   }
   GOnde.update();
   GOnde.display();
-  fill(255);
-  textSize( 32 );
-  text((int)(freq) + " Hz", 0, 30);
-  text("val = " + nf(max, 0, 2), 0, 60);
+  
+  if(affiche){
+    fill(255);
+    textSize( 32 );
+    text((int)(freq) + " Hz", 0, 30);
+    text("val = " + nf(max, 0, 2), 0, 30+30);
+  }
 }
 
 
 void keyPressed()
 {
+   if (key == 'a' || key == 'A') {
+      if(affiche)
+        affiche = false;
+      else
+        affiche = true;
+   }
 }

@@ -3,7 +3,7 @@ class onde {
   PVector position;
   PVector velocity;
   float lifespan = 255;
-  float radius, m;
+  float radius;
   
   PShape part;
   float partSize;
@@ -16,7 +16,6 @@ class onde {
     spriteColor = color(25,244,244);
     part = createShape();
     radius = _radius;
-    m = radius *.1;
     
     part.beginShape(QUAD);
     part.noStroke();
@@ -116,13 +115,14 @@ void checkCollisionOnde(onde other)
       PVector[] vFinal = {  
         new PVector(), new PVector()
       };
-
+      float m = radius*.1;
+      float other_m = other.radius*.1;
       // final rotated velocity for b[0]
-      vFinal[0].x = ((m - other.m) * vTemp[0].x + 2 * other.m * vTemp[1].x) / (m + other.m);
+      vFinal[0].x = ((m - other_m) * vTemp[0].x + 2 * other_m * vTemp[1].x) / (m + other_m);
       vFinal[0].y = vTemp[0].y;
 
       // final rotated velocity for b[0]
-      vFinal[1].x = ((other.m - m) * vTemp[1].x + 2 * m * vTemp[0].x) / (m + other.m);
+      vFinal[1].x = ((other_m - m) * vTemp[1].x + 2 * m * vTemp[0].x) / (m + other_m);
       vFinal[1].y = vTemp[1].y;
 
       // hack to avoid clumping
@@ -153,6 +153,8 @@ void checkCollisionOnde(onde other)
       velocity.y = cosine * vFinal[0].y + sine * vFinal[0].x;
       other.velocity.x = cosine * vFinal[1].x - sine * vFinal[1].y;
       other.velocity.y = cosine * vFinal[1].y + sine * vFinal[1].x;
+      
+      
     }
 }
   
