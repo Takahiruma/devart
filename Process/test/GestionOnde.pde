@@ -8,7 +8,7 @@ class GestionOnde {
     ondeShape = createShape(PShape.GROUP);
 
     for (int i = 0; i < n; i++) {
-      onde p = new onde();
+      onde p = new onde(5);
       ondes.add(p);
       ondeShape.addChild(p.getShape());
     }
@@ -48,7 +48,6 @@ class GestionOnde {
   }
 
   void display() {
-
     shape(ondeShape);
   }
 }
