@@ -24,7 +24,7 @@ public:
 	void printData();
 
 	//GETTERS
-	double getFundFreq();
+	int getFundFreq();
 	inline CArray getData() const { return data; } 
 
 };
