@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <cmath>
+#include <stdio.h>
 #include "classFFT.h"
 
 using namespace std;
@@ -64,6 +65,17 @@ void classFFT::printData()
 		cout << "Fourier " << i << " " << data[i] << endl;
 }
 
+// /////////////////////////////////////////////////////////// //
+// ECRITURE DES MODULES DES FREQUENCES DANS UN FICHIER BINAIRE //
+// /////////////////////////////////////////////////////////// //
+void classFFT::writeBinary()
+{
+	FILE *file;
+
+	file = fopen("binaryData.raw", "wb");						//ouverture en mode écriture binaire
+	fwrite(&normData, sizeof(normData), normData.size(), file);	//écriture dans le fichier
+}
+
 
 // ////////////////////////////////////////////// //
 // OBTENIR LA VALEUR DE LA FREQUENCE FONDAMENTALE //
@@ -78,6 +90,7 @@ int classFFT::getFundFreq()
 	for (int i = 0; i < data.size(); ++i)
 	{
 		temp = norm(data[i]);
+		normData.push_back(temp);
 		//temp = data[i].real()*data[i].real() + data[i].imag()*data[i].imag();
 		//double temp2 = std::sqrt(2,temp);
 		if (temp > max)

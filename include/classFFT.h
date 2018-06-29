@@ -3,7 +3,9 @@
 
 #include <complex>
 #include <valarray>
+#include <vector>
 #include <SFML/Audio.hpp>
+
 
 
 typedef std::complex<double> Complex;
@@ -15,6 +17,7 @@ const double PI = 3.141592653589793238460;	//valeur de PI
 class classFFT {
 private:
 	CArray data;
+	std::vector<double> normData;
 
 public:
 	classFFT(const sf::Int16 *myarray, const int size);
@@ -22,6 +25,7 @@ public:
 
 	bool initFFT(CArray &x);
 	void printData();
+	void writeBinary();
 
 	//GETTERS
 	int getFundFreq();
